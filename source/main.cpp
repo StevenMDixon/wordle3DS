@@ -3,6 +3,7 @@
 #include <string.h>
 #include <citro2d.h>
 #include <3ds.h>
+
 #include "view/view.h"
 
 #define SCREEN_WIDTH  400
@@ -15,8 +16,8 @@ static SwkbdCallbackResult MyCallback(void* user, const char** ppMessage, const 
 
 int main(int argc, char* argv[])
 {
-	// View myView;
-	// myView.test();
+	View myView;
+	myView.test();
 	// Init libs
 	gfxInitDefault();
 	// C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);

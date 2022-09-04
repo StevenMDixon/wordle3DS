@@ -1,4 +1,4 @@
 class View {
   public:
-  void test();
+  int test();
 };

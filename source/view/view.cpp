@@ -1,6 +1,7 @@
 #include <view.h>
 
-void View::test(){
+int View::test(){
   int i = 0;
   i += 1;
+  return i;
 };
