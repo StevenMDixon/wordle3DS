@@ -1,5 +1,6 @@
 @echo off
-make 
+make clean
+make
 pause
 set Rom = ''
 for /r %%i in (*.3dsx*) do (
