@@ -4,19 +4,13 @@
 #include <citro2d.h>
 #include <3ds.h>
 
-class scene
+class Scene
 {
 private:
     /* data */
 public:
-    scene(/* args */);
-    ~scene();
+    virtual void Load(){};
+    virtual void Update(){};
 };
 
-scene::scene(/* args */)
-{
-}
-
-scene::~scene()
-{
-}
+#endif

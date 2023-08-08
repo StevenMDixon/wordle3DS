@@ -1,4 +1,5 @@
 #include "game.h"
+#include "title.h"
 
 #define TOP_SCREEN_WIDTH  400
 #define TOP_SCREEN_HEIGHT 240
@@ -15,7 +16,7 @@ typedef struct
 
 static C2D_SpriteSheet spriteSheet;
 static Sprite sprites[MAX_SPRITES];
-static size_t numSprites = MAX_SPRITES/2;
+// static size_t numSprites = MAX_SPRITES/2;
 
 // Create colors, pulled from wordle
 // u32 clrBlack = C2D_Color32(33, 33, 33, 0xff);
@@ -43,6 +44,9 @@ static u32 clrYellow = C2D_Color32(201, 180,88, 0xff);
         C2D_SpriteFromSheet(&sprites[0].spr, spriteSheet, 0);
         C2D_SpriteSetCenter(&sprites[0].spr, 0.5f, 0.5f);
         C2D_SpriteSetPos(&sprites[0].spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
+
+        this->currentScene = "Title";
+        this->scenes["Title"] = new Title();
     };
 
     bool Game::HandleInput(u32 kDown){
@@ -72,5 +76,5 @@ static u32 clrYellow = C2D_Color32(201, 180,88, 0xff);
     };
 
     void Game::Run(){
-
+        this->scenes[currentScene]->Update();
     };
