@@ -11,6 +11,8 @@ private:
 public:
     virtual void Load(){};
     virtual void Update(){};
+    virtual void HandleInput(){};
+    virtual void HandleTouch(){};
 };
 
 #endif
