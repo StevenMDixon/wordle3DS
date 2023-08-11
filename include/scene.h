@@ -11,8 +11,8 @@ private:
 public:
     virtual void Load(){};
     virtual void Update(){};
-    virtual void HandleInput(){};
-    virtual void HandleTouch(){};
+    virtual void HandleKeyInput(u32 kDown){};
+    virtual void HandleTouchInput(touchPosition touch){};
 };
 
 #endif

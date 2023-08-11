@@ -33,13 +33,6 @@ Renderer::Renderer(){
 
         this->top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
         this->bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
-
-        // Initialize sprites
-        // spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/keyboard.t3x");
-	    // if (!spriteSheet) svcBreak(USERBREAK_PANIC);
-
-        // load sprites from sheet into container
-      
 };
 
 void Renderer::Render()
@@ -69,7 +62,9 @@ void Renderer::LoadSpriteSheet(std::string name, std::string location){
 
 	if (!this->SpriteSheets[name]) svcBreak(USERBREAK_PANIC);
 
+// load sprites from sheet into container
     C2D_SpriteFromSheet(&sprites[0].spr, this->SpriteSheets["keyboard"], 0);
     C2D_SpriteSetCenter(&sprites[0].spr, 0.5f, 0.5f);
     C2D_SpriteSetPos(&sprites[0].spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
+
 };

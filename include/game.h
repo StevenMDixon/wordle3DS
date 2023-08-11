@@ -16,7 +16,7 @@ class Game
         Renderer* renderer;
     public:
         Game();
-        bool HandleInput(u32 kDown);
+        bool HandleInput(u32 kDown, touchPosition touch);
         void Render();
         void RenderTop();
         void RenderBottom();

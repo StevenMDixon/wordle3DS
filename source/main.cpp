@@ -12,8 +12,13 @@ int main(int argc, char* argv[])
 	// Main loop
 	while (aptMainLoop())
 	{
+		hidScanInput();
+
+		touchPosition touch;
+		hidTouchRead(&touch);
+
 		u32 kDown = hidKeysDown();
-		if(!myGame.HandleInput(kDown)) break;
+		if(!myGame.HandleInput(kDown, touch)) break;
 		
 		myGame.Run();
 		myGame.Render();
