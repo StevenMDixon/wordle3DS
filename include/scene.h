@@ -14,7 +14,6 @@ public:
     virtual void Update(){};
     virtual void HandleKeyInput(u32 kDown){};
     virtual void HandleTouchInput(touchPosition touch){};
-    virtual 
 };
 
 #endif
