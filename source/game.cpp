@@ -6,9 +6,13 @@
         romfsInit();
 	    this->renderer = new Renderer();
         this->currentScene = "Title";
-        this->scenes["Title"] = new Title();
-
+        
+        //load sprite sheets into renderer
         this->renderer->LoadSpriteSheet("keyboard", "romfs:/gfx/keyboard.t3x");
+        // create a scene
+        this->scenes["Title"] = new Title();
+        this->renderer->CreateSpritesContext("Title");
+        // this->createScene("Title", new Title());
     };
 
     bool Game::HandleInput(u32 kDown, touchPosition touch){
@@ -21,9 +25,13 @@
     };
 
     void Game::Render(){
-       this->renderer->Render();
+       this->renderer->Render(this->currentScene);
     };
 
     void Game::Run(){
         this->scenes[currentScene]->Update();
     };
+
+    void Game::createScene(std::string sceneName, Scene* scene){
+        
+    }

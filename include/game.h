@@ -14,6 +14,7 @@ class Game
         std::map<std::string, Scene*> scenes;
         std::string currentScene;
         Renderer* renderer;
+        void createScene(std::string sceneName, Scene* sceneClass);
     public:
         Game();
         bool HandleInput(u32 kDown, touchPosition touch);
