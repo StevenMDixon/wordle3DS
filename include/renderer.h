@@ -14,7 +14,6 @@ class Renderer
         C3D_RenderTarget* top;
         C3D_RenderTarget* bottom;
         std::map<std::string, C2D_SpriteSheet> SpriteSheets;
-
         std::map<std::string, std::array<Sprite*, MAX_SPRITES>> Sprites;
 
         void RenderTop(std::string currentScene);

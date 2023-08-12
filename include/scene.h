@@ -8,13 +8,13 @@
 class Scene
 {
 private:
-    /* data */
-    static Sprite sprites[MAX_SPRITES];
+
 public:
     virtual void Load(){};
     virtual void Update(){};
     virtual void HandleKeyInput(u32 kDown){};
     virtual void HandleTouchInput(touchPosition touch){};
+    virtual 
 };
 
 #endif

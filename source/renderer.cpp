@@ -46,7 +46,12 @@ void Renderer::RenderBottom(std::string currentScene){
     C2D_SceneBegin(this->bottom);
     C2D_DrawRectSolid(0,0,0,BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT, clrYellow);
     
-    C2D_DrawSprite(&this->Sprites[currentScene][0]->spr);
+    if(this->Sprites[currentScene][0]->tint != nullptr)
+    {
+        C2D_DrawSpriteTinted(&this->Sprites[currentScene][0]->spr, this->Sprites[currentScene][0]->tint);
+    } else {
+        C2D_DrawSprite(&this->Sprites[currentScene][0]->spr);
+    }
 };
 
 void Renderer::LoadSpriteSheet(std::string name, std::string location){
@@ -61,4 +66,22 @@ void Renderer::CreateSpritesContext(std::string name){
     C2D_SpriteFromSheet(&this->Sprites[name][0]->spr, this->SpriteSheets["keyboard"], 0);
     C2D_SpriteSetCenter(&this->Sprites[name][0]->spr, 0.5f, 0.5f);
     C2D_SpriteSetPos(&this->Sprites[name][0]->spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
+    // C2D_ImageTint* tint = new C2D_ImageTint();
+    // tint->corners[0] = {
+    //     clrGreen,  
+    //     1
+    // };
+    // tint->corners[1] = {
+    //     clrGreen,  
+    //     1
+    // };
+    // tint->corners[2] = {
+    //     clrGreen,  
+    //     1
+    // };
+    // tint->corners[3] = {
+    //     clrGreen,  
+    //     1
+    // };
+    // this->Sprites[name][0]->tint = tint;
 }
