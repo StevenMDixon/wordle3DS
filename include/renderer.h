@@ -6,6 +6,7 @@
 #include <3ds.h>
 #include <string>
 #include "sprite.h"
+#include <array>
 
 class Renderer
 {
@@ -14,7 +15,7 @@ class Renderer
         C3D_RenderTarget* bottom;
         std::map<std::string, C2D_SpriteSheet> SpriteSheets;
 
-        std::map<std::string, Foo>> Sprites;
+        std::map<std::string, std::array<Sprite*, MAX_SPRITES>> Sprites;
 
         void RenderTop(std::string currentScene);
         void RenderBottom(std::string currentScene);

@@ -45,8 +45,8 @@ void Renderer::RenderBottom(std::string currentScene){
     C2D_TargetClear(this->bottom, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
     C2D_SceneBegin(this->bottom);
     C2D_DrawRectSolid(0,0,0,BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT, clrYellow);
-    Sprite* mySprite = this->Sprites[currentScene];
-    C2D_DrawSprite(&mySprite[0].spr);
+    
+    C2D_DrawSprite(&this->Sprites[currentScene][0]->spr);
 };
 
 void Renderer::LoadSpriteSheet(std::string name, std::string location){
@@ -57,9 +57,8 @@ void Renderer::LoadSpriteSheet(std::string name, std::string location){
 };
 
 void Renderer::CreateSpritesContext(std::string name){
-    Sprite sprites[MAX_SPRITES];
-    C2D_SpriteFromSheet(&sprites[0].spr, this->SpriteSheets["keyboard"], 0);
-    C2D_SpriteSetCenter(&sprites[0].spr, 0.5f, 0.5f);
-    C2D_SpriteSetPos(&sprites[0].spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
-    this->Sprites.emplace(name, sprites);
+    this->Sprites[name][0] = new Sprite();
+    C2D_SpriteFromSheet(&this->Sprites[name][0]->spr, this->SpriteSheets["keyboard"], 0);
+    C2D_SpriteSetCenter(&this->Sprites[name][0]->spr, 0.5f, 0.5f);
+    C2D_SpriteSetPos(&this->Sprites[name][0]->spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
 }
