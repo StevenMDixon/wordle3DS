@@ -9,6 +9,7 @@
 #include "screenContext.h"
 #include <array>
 #include "spriteDTO.h"
+#include "screen_enum.h"
 
 class Renderer
 {
@@ -25,7 +26,7 @@ class Renderer
         void Render(ScreenContext* screenData);
         void LoadSpriteSheet(std::string name, std::string location);
         //void CreateSpritesContext(std::string name);
-        void CreateSpriteFromContext(ScreenContext* screenContext, SpriteDTO spriteData);
+        void CreateSpriteFromContext(ScreenContext* screenContext, SpriteDTO spriteData, Screen screen);
 };
 
 #endif

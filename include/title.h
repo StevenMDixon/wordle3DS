@@ -13,6 +13,7 @@ public:
     Title();
     void Load();
     void Update();
+    void HandleKeyInput(u32 kDown);
 };
 
 #endif

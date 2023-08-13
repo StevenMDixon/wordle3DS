@@ -9,6 +9,7 @@
 #include "renderer.h"
 #include "title.h"
 #include "spriteDTO.h"
+#include "screen_enum.h"
 
 class Game
 {
