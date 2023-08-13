@@ -7,6 +7,8 @@
 #include <string>
 #include "scene.h"
 #include "renderer.h"
+#include "title.h"
+#include "spriteDTO.h"
 
 class Game
 {

@@ -27,30 +27,30 @@ Renderer::Renderer(){
         this->bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 };
 
-void Renderer::Render(std::string currentScene)
+void Renderer::Render(ScreenContext* screenData)
 {
     C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-    this->RenderTop(currentScene);
-    this->RenderBottom(currentScene);
+    this->RenderTop(screenData);
+    this->RenderBottom(screenData);
     C3D_FrameEnd(0);
 };
 
-void Renderer::RenderTop(std::string currentScene){
+void Renderer::RenderTop(ScreenContext* screenData){
     C2D_TargetClear(this->top, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
     C2D_SceneBegin(this->top);
     C2D_DrawRectSolid(0,0,0, TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT, clrGreen);
 };
 
-void Renderer::RenderBottom(std::string currentScene){
+void Renderer::RenderBottom(ScreenContext* screenData){
     C2D_TargetClear(this->bottom, C2D_Color32f(0.0f, 0.0f, 0.0f, 1.0f));
     C2D_SceneBegin(this->bottom);
-    C2D_DrawRectSolid(0,0,0,BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT, clrYellow);
+    C2D_DrawRectSolid(0,0,0, BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT, clrYellow);
     
-    if(this->Sprites[currentScene][0]->tint != nullptr)
+    if(screenData->sprites[0]->tint != nullptr)
     {
-        C2D_DrawSpriteTinted(&this->Sprites[currentScene][0]->spr, this->Sprites[currentScene][0]->tint);
+        C2D_DrawSpriteTinted(&screenData->sprites[0]->spr, screenData->sprites[0]->tint);
     } else {
-        C2D_DrawSprite(&this->Sprites[currentScene][0]->spr);
+        C2D_DrawSprite(&screenData->sprites[0]->spr);
     }
 };
 
@@ -61,11 +61,22 @@ void Renderer::LoadSpriteSheet(std::string name, std::string location){
 // load sprites from sheet into container
 };
 
-void Renderer::CreateSpritesContext(std::string name){
-    this->Sprites[name][0] = new Sprite();
-    C2D_SpriteFromSheet(&this->Sprites[name][0]->spr, this->SpriteSheets["keyboard"], 0);
-    C2D_SpriteSetCenter(&this->Sprites[name][0]->spr, 0.5f, 0.5f);
-    C2D_SpriteSetPos(&this->Sprites[name][0]->spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
+void Renderer::CreateSpriteFromContext(ScreenContext* screenContext, SpriteDTO spriteData){
+    Sprite* sprite = new Sprite();
+    C2D_SpriteFromSheet(&sprite->spr, this->SpriteSheets[spriteData.sheet], spriteData.index);
+    C2D_SpriteSetCenter(&sprite->spr, spriteData.center_x, spriteData.center_y);
+    C2D_SpriteSetPos(&sprite->spr, spriteData.x, spriteData.y);
+    C2D_SpriteSetDepth(&sprite->spr, spriteData.depth);
+    C2D_SpriteSetRotation(&sprite->spr, spriteData.angle);
+
+    screenContext->sprites[0] = sprite;
+};
+
+// void Renderer::CreateSpritesContext(std::string name){
+//     this->Sprites[name][0] = new Sprite();
+//     C2D_SpriteFromSheet(&this->Sprites[name][0]->spr, this->SpriteSheets["keyboard"], 0);
+//     C2D_SpriteSetCenter(&this->Sprites[name][0]->spr, 0.5f, 0.5f);
+//     C2D_SpriteSetPos(&this->Sprites[name][0]->spr, BOTTOM_SCREEN_WIDTH/ 2,BOTTOM_SCREEN_HEIGHT /2);
     // C2D_ImageTint* tint = new C2D_ImageTint();
     // tint->corners[0] = {
     //     clrGreen,  
@@ -84,4 +95,4 @@ void Renderer::CreateSpritesContext(std::string name){
     //     1
     // };
     // this->Sprites[name][0]->tint = tint;
-}
+//}

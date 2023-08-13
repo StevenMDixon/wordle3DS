@@ -6,7 +6,9 @@
 #include <3ds.h>
 #include <string>
 #include "sprite.h"
+#include "screenContext.h"
 #include <array>
+#include "spriteDTO.h"
 
 class Renderer
 {
@@ -14,15 +16,16 @@ class Renderer
         C3D_RenderTarget* top;
         C3D_RenderTarget* bottom;
         std::map<std::string, C2D_SpriteSheet> SpriteSheets;
-        std::map<std::string, std::array<Sprite*, MAX_SPRITES>> Sprites;
+        //std::map<std::string, std::array<Sprite*, MAX_SPRITES>> Sprites;
 
-        void RenderTop(std::string currentScene);
-        void RenderBottom(std::string currentScene);
+        void RenderTop(ScreenContext* screenData);
+        void RenderBottom(ScreenContext* screenData);
     public:
         Renderer();
-        void Render(std::string currentScene);
+        void Render(ScreenContext* screenData);
         void LoadSpriteSheet(std::string name, std::string location);
-        void CreateSpritesContext(std::string name);
+        //void CreateSpritesContext(std::string name);
+        void CreateSpriteFromContext(ScreenContext* screenContext, SpriteDTO spriteData);
 };
 
 #endif
