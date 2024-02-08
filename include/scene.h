@@ -15,6 +15,9 @@ public:
     virtual void Update(){};
     virtual void HandleKeyInput(u32 kDown){};
     virtual void HandleTouchInput(touchPosition touch){};
+    virtual ScreenContext* getContext(){
+        return this->screenContext;
+    }
     virtual ScreenContext* getSpritesForRenderer(){
         return this->screenContext;
     }
